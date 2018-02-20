@@ -19,8 +19,8 @@ public class Main1 {
 		// Calcule du déterminant avec cofacteurs
 		System.out.println("\nDéterminant de la matrice : " + calculDetermMatrice3(matrice));
 	}
-	
-	
+
+
 
 	/**
 	 * Calcule le déterminant d'une matrice 3x3
@@ -32,7 +32,7 @@ public class Main1 {
 			System.out.println("La matrice n'est pas d'ordre 3 !");
 			return 0.0;
 		}
-		
+
 		if(matrice[0][0] == matrice[1][1] && matrice [0][0] == matrice[2][2]) { // Si matrice triangulaire
 			return matrice[0][0] + matrice[1][1] + matrice[2][2];
 		}
