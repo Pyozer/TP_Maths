@@ -1,4 +1,4 @@
-package exercice3;
+package exo3;
 
 public class Operation{
 	private String value;
