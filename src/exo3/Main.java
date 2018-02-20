@@ -1,5 +1,7 @@
 package exo3;
 
+import utils.Matrice;
+
 public class Main {
 	public static void main(String[] args) {
 		String matrice[][] = new String[5][5];
@@ -43,13 +45,13 @@ public class Main {
 				}
 			}
 		}
-		afficherMatrice(matrice);	
+		Matrice.afficherMatrice(matrice);	
 		//Une fois les 0 apparues
 		
 		System.out.println("\n\n\n");
 		
 		
-		afficherMatrice(sousMatrice(matrice,1,1));	
+		Matrice.afficherMatrice(Matrice.sousMatriceString(matrice,1,1));	
 	}
 	public static String[][] sousMatrice(String matrice[][], int x, int y){
 		String sMatrice[][] = new String[matrice[0].length-1][matrice[0].length-1];
@@ -63,20 +65,6 @@ public class Main {
 			sMatJ++;
 		}
 		return sMatrice;
-	}
-	public static void afficherMatrice(String[][] matrice) {
-		final int NBSPACE = 10;
-		
-		for(int i = 0 ; i < matrice[0].length; i++) {
-			for(int j = 0; j < matrice[0].length ; j ++) {
-				String spaces = "";
-				for(int nb = 0 ; nb < NBSPACE - matrice[i][j].length() ; nb++) {
-					spaces += " ";
-				}
-				System.out.print(matrice[i][j] + spaces);
-			}
-			System.out.println();
-		}
 	}
 	
 	public static boolean isNumeric(String str) {

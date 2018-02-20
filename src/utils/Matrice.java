@@ -19,7 +19,9 @@ public class Matrice {
 		Double[][] sousMatrice = new Double[tailleSousMatrice][tailleSousMatrice];
 		// On parcours la matrice pour récupérer la sous matrice
 		for(int i = 0;i < tailleSousMatrice;i++) { // Pour chaque ligne
-			sousMatrice[i] = (Double[]) sousMatriceStr[i];
+			for(int j = 0;j < tailleSousMatrice;j++) {
+				sousMatrice[i][j] = (Double) sousMatriceStr[i][j];
+			}
 		}
 		
 		return sousMatrice;
@@ -43,7 +45,9 @@ public class Matrice {
 		String[][] sousMatrice = new String[tailleSousMatrice][tailleSousMatrice];
 		// On parcours la matrice pour récupérer la sous matrice
 		for(int i = 0;i < tailleSousMatrice;i++) { // Pour chaque ligne
-			sousMatrice[i] = (String[]) sousMatriceStr[i];
+			for(int j = 0;j < tailleSousMatrice;j++) {
+				sousMatrice[i][j] = (String) sousMatriceStr[i][j];
+			}
 		}
 		
 		return sousMatrice;
@@ -80,7 +84,7 @@ public class Matrice {
 		}
 		
 		System.out.println("\nSous Matrice : ");
-		Affichage.afficherMatrice(sousMatrice);
+		afficherMatrice(sousMatrice);
 		
 		return sousMatrice;
 		
@@ -104,5 +108,24 @@ public class Matrice {
 		
 		return (a*d) - (c*b);
 	}
-
+	
+	/**
+	 * Affiche une matrice dans la console
+	 * @param matrice Matrice àfficher
+	 */
+	public static void afficherMatrice(Object[][] matrice) {
+		final int NBSPACE = 10;
+		
+		for(int i = 0 ; i < matrice[0].length; i++) {
+			for(int j = 0; j < matrice[0].length ; j ++) {
+				String spaces = "";
+				for(int nb = 0 ; nb < NBSPACE - String.valueOf(matrice[i][j]).length(); nb++) {
+					spaces += " ";
+				}
+				System.out.print(matrice[i][j] + spaces);
+			}
+			System.out.println("");
+		}
+		System.out.println(""); // Saut de ligne pour faire une séparation
+	}
 }

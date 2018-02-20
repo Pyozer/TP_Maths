@@ -1,6 +1,5 @@
 package exo2;
 
-import utils.Affichage;
 import utils.Matrice;
 import utils.SaisieMatrice;
 
@@ -15,7 +14,7 @@ public class Main2 {
 		matrice = SaisieMatrice.debutSaisie(TAILLE_MATRICE);
 
 		System.out.println("\nMatrice : ");
-		Affichage.afficherMatrice(matrice);
+		Matrice.afficherMatrice(matrice);
 
 		// Calcule du déterminant avec cofacteurs
 		System.out.println("\nDéterminant de la matrice : " + calculDetermMatrice(matrice));
@@ -49,7 +48,7 @@ public class Main2 {
 		}
 
 		System.out.println("\nMatrice calc:");
-		Affichage.afficherMatrice(matriceCalc);
+		Matrice.afficherMatrice(matriceCalc);
 
 		return matriceCalc[indexLignePivot][indexColPivot] * calculDetermMatrice(Matrice.sousMatriceDouble(matriceCalc, indexLignePivot, indexColPivot));
 	}
