@@ -33,12 +33,16 @@ public class main1 {
 			System.out.println("La matrice n'est pas d'ordre 3 !");
 			return 0;
 		}
+		
+		if(matrice[0][0] == matrice[1][1] && matrice [0][0] == matrice[2][2]) { // Si matrice triangulaire
+			return matrice[0][0] + matrice[1][1] + matrice[2][2];
+		}
 
 		int i = 0; // On prend la 1ère ligne
 		double determinantMatrice = 0;
 
 		for (int j = 0; j < TAILLE_MATRICE; j++) { // Parcours chaques colonnes de la ligne 1
-			determinantMatrice += matrice[i][j] * Math.pow(-1, (i + 1) + (j + 1)) * Matrice.calculDetermMatrice2(Matrice.sousMatrice(matrice, i, j));
+			determinantMatrice += matrice[i][j] * Math.pow(-1, (i + 1) + (j + 1)) * Matrice.calculDetermMatrice2(Matrice.sousMatriceDouble(matrice, i, j));
 		}
 		return determinantMatrice;
 	}

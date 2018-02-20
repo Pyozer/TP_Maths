@@ -9,9 +9,46 @@ public class Matrice {
 	 * @param jPos Colonne choisie
 	 * @return Sous matrice d'ordre n-1
 	 */
-	public static double[][] sousMatrice(double[][] matrice, int iPos, int jPos) {
+	
+	public static double[][] sousMatriceDouble(double[][] matrice, int iPos, int jPos) {
+		String[][] matriceStr = new String[matrice.length][matrice.length];
+		
+		// On parcours la matrice pour récupérer la sous matrice
+		for(int i = 0;i < matrice.length;i++) { // Pour chaque ligne
+			for(int j = 0;j < matrice.length;j++) { // Pour chaque colonne
+				matriceStr[i][j] = String.valueOf(matrice[i][j]);
+			}
+		}
+		
 		int tailleSousMatrice = matrice.length - 1;
+		String[][] sousMatriceStr = new String[tailleSousMatrice][tailleSousMatrice];
+		sousMatriceStr = sousMatriceString(matriceStr, iPos, jPos);
+		
 		double[][] sousMatrice = new double[tailleSousMatrice][tailleSousMatrice];
+		// On parcours la matrice pour récupérer la sous matrice
+		for(int i = 0;i < matrice.length;i++) { // Pour chaque ligne
+			for(int j = 0;j < matrice.length;j++) { // Pour chaque colonne
+				sousMatrice[i][j] = Double.valueOf(sousMatriceStr[i][j]);
+			}
+		}
+		
+		System.out.println("\nSous Matrice : ");
+		Affichage.afficherMatrice(sousMatrice);
+		
+		return sousMatrice;
+		
+	}
+	
+	/**
+	 * Récupère la sous matrice d'une matrice de String selon la ligne et colonne choisie
+	 * @param matrice Matrice
+	 * @param iPos Ligne choisie
+	 * @param jPos Colonne choisie
+	 * @return Sous matrice d'ordre n-1
+	 */
+	public static String[][] sousMatriceString(Object[][] matrice, int iPos, int jPos) {
+		int tailleSousMatrice = matrice.length - 1;
+		String[][] sousMatrice = new String[tailleSousMatrice][tailleSousMatrice];
 		
 		int iSousMatrice = 0;
 		int jSousMatrice = 0;
@@ -21,7 +58,7 @@ public class Matrice {
 			if(i != iPos) { // Si on est pas à la ligne à ignorer
 				for(int j = 0;j < matrice.length;j++) { // Pour chaque colonne
 					if(j != jPos) { // Si on est pas à la colonne à ignorer						
-						sousMatrice[iSousMatrice][jSousMatrice] = matrice[i][j]; // On insert dans la sous matrice
+						sousMatrice[iSousMatrice][jSousMatrice] = String.valueOf(matrice[i][j]); // On insert dans la sous matrice
 						
 						jSousMatrice++; // Incrémentation le compteur j de la sous matrice
 					}
@@ -30,9 +67,6 @@ public class Matrice {
 				iSousMatrice++; // Incrémentation du compteur i de la sous matrice
 			}
 		}
-		
-		System.out.println("\nSous Matrice : ");
-		Affichage.afficherMatrice(sousMatrice);
 		
 		return sousMatrice;
 		

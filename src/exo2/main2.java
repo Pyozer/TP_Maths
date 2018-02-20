@@ -51,7 +51,7 @@ public class main2 {
 		System.out.println("\nMatrice calc:");
 		Affichage.afficherMatrice(matriceCalc);
 
-		return matriceCalc[indexLignePivot][indexColPivot] * calculDetermMatrice(Matrice.sousMatrice(matriceCalc, indexLignePivot, indexColPivot));
+		return matriceCalc[indexLignePivot][indexColPivot] * calculDetermMatrice(Matrice.sousMatriceDouble(matriceCalc, indexLignePivot, indexColPivot));
 	}
 
 }
