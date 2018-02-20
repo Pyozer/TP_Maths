@@ -4,12 +4,12 @@ import java.util.Scanner;
 
 public class SaisieMatrice {
 
-	public static double[][] debutSaisie(int tailleMatrice) {
+	public static Double[][] debutSaisie(int tailleMatrice) {
 		System.out.println("===== Saisie matrice taille " + tailleMatrice + " =====");
 
 		Scanner sc = new Scanner(System.in);
 
-		double[][] matrice = new double[tailleMatrice][tailleMatrice];
+		Double[][] matrice = new Double[tailleMatrice][tailleMatrice];
 
 		for(int i = 0;i < tailleMatrice;i++) {
 			for(int j = 0;j < tailleMatrice;j++) {
