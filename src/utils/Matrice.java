@@ -14,6 +14,7 @@ public class Matrice {
 	 * @return Sous matrice d'ordre n-1
 	 */
 	public static Double[][] sousMatriceDouble(Double[][] matrice, int iPos, int jPos) {
+		System.out.println("METHODE APPELE !");
 		int tailleSousMatrice = matrice.length - 1;
 		Object[][] sousMatriceStr = new Object[tailleSousMatrice][tailleSousMatrice];
 		sousMatriceStr = sousMatriceObject(matrice, iPos, jPos);
@@ -125,8 +126,8 @@ public class Matrice {
 				}
 			}
 		}
-		
-		if(!isTriangularSup) {
+
+		if (!isTriangularSup) {
 			for (int i = 0; i < matrice.length; i++) {
 				for (int j = 0; j < i; j++) {
 					if (!matrice[i][j].toString().equals("0.0") && !matrice[i][j].toString().equals("0")) {
