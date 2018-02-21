@@ -33,7 +33,8 @@ public class Main1 {
 			return 0.0;
 		}
 
-		if(matrice[0][0] == matrice[1][1] && matrice [0][0] == matrice[2][2]) { // Si matrice triangulaire
+		if(Matrice.isTriangular(matrice)) { // Si matrice triangulaire
+			System.out.println("Matrice triangulaire");
 			return matrice[0][0] + matrice[1][1] + matrice[2][2];
 		}
 
