@@ -40,7 +40,7 @@ public class Main {
 			for(int col = 1 ; col < matrice[0].length; col++) {
 				if(isNumeric(matrice[li][col]) && isNumeric(matrice[li][0])) {
 					matrice[li][col] = String.valueOf(Integer.parseInt(matrice[li][col]) - Integer.parseInt(matrice[li][0]));
-				}else {
+				} else {
 					matrice[li][col] = matrice[li][col] + "-" + matrice[li][0];
 				}
 			}
@@ -51,7 +51,7 @@ public class Main {
 		System.out.println("\n\n\n");
 		
 		
-		Matrice.afficherMatrice(Matrice.sousMatriceString(matrice,1,1));	
+		Matrice.afficherMatrice(Matrice.sousMatriceString(matrice,0,0));	
 	}
 	public static String[][] sousMatrice(String matrice[][], int x, int y){
 		String sMatrice[][] = new String[matrice[0].length-1][matrice[0].length-1];

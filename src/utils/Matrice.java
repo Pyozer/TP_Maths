@@ -79,9 +79,6 @@ public class Matrice {
 			}
 		}
 
-		System.out.println("\nSous Matrice : ");
-		afficherMatrice(sousMatrice);
-
 		return sousMatrice;
 	}
 
