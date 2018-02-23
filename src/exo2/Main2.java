@@ -20,7 +20,7 @@ public class Main2 {
 		System.out.println("\nDéterminant de la matrice : " + calculDetermMatrice(matrice));
 	}
 
-	private static Double calculDetermMatrice(Double[][] matrice) {
+	public static Double calculDetermMatrice(Double[][] matrice) {
 
 		if(matrice.length == 2) {
 			return Matrice.calculDetermMatrice2(matrice);
