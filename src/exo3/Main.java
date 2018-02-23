@@ -1,75 +1,116 @@
 package exo3;
 
+import java.util.ArrayList;
+import java.util.Scanner;
+
 import utils.Matrice;
 
 public class Main {
 	public static void main(String[] args) {
-		String matrice[][] = new String[5][5];
-		matrice[0][0] = "1";
-		matrice[0][1] = "1";
-		matrice[0][2] = "1";
-		matrice[0][3] = "1";
-		matrice[0][4] = "1";
+		Scanner sc = new Scanner(System.in);
+		String line = "";
+		int taille = 0;
 		
-		matrice[1][0] = "a";
-		matrice[1][1] = "b";
-		matrice[1][2] = "c";
-		matrice[1][3] = "d";
-		matrice[1][4] = "e";
+		//Recuperation de la taille de la matrice
+		System.out.println("Entrez la taille de la matrice :");
+		do{
+			if (isNumeric(line = sc.nextLine().trim().toLowerCase())) break;
+		}while(taille < 10);
+		taille = Integer.parseInt(line);
 		
-		matrice[2][0] = "a2";
-		matrice[2][1] = "b2";
-		matrice[2][2] = "c2";
-		matrice[2][3] = "d2";
-		matrice[2][4] = "e2";
-		
-		matrice[3][0] = "a3";
-		matrice[3][1] = "b3";
-		matrice[3][2] = "c3";
-		matrice[3][3] = "d3";
-		matrice[3][4] = "e3";
-		
-		matrice[4][0] = "a4";
-		matrice[4][1] = "b4";
-		matrice[4][2] = "c4";
-		matrice[4][3] = "d4";
-		matrice[4][4] = "e4";
-		
-		
-		for(int li = 0 ; li < matrice[0].length ; li++) {
-			for(int col = 1 ; col < matrice[0].length; col++) {
-				if(isNumeric(matrice[li][col]) && isNumeric(matrice[li][0])) {
-					matrice[li][col] = String.valueOf(Integer.parseInt(matrice[li][col]) - Integer.parseInt(matrice[li][0]));
-				} else {
-					matrice[li][col] = matrice[li][col] + "-" + matrice[li][0];
-				}
+		//Recuperation des nombres
+		String []userInput = new String[taille];
+		for(int i = 0 ; i < userInput .length; i++) {
+			System.out.println("Enter "+ (char)(97+i)+ " :");
+			userInput[i] = sc.nextLine();
+		}
+		//Creation de la matrice associee
+		Object matrice[][] = new Object[taille][taille];
+		for(int i = 0 ; i < matrice.length; i++) {
+			for(int j = 0 ; j < matrice.length ; j++) {
+				matrice[i][j] = puissance(userInput[j], i);
 			}
 		}
-		Matrice.afficherMatrice(matrice);	
-		//Une fois les 0 apparues
+		System.out.println("-------------------Matrice Originelle-------------------");
+		Matrice.afficherMatrice(matrice);
 		
-		System.out.println("\n\n\n");
+		//Parcour de la ligne
+		ArrayList<Object> result = new ArrayList<>();
 		
 		
-		Matrice.afficherMatrice(Matrice.sousMatriceString(matrice,0,0));	
+		int indexFin = 0;
+		int index = indexFin + 1;
+		while(indexFin <= matrice.length-2) {
+			result.add(soustraire(matrice[1][index], matrice[1][indexFin]));
+			index ++;
+			if(index > matrice.length-1) {
+				indexFin ++;
+				index = indexFin+1;
+			}
+		}
+		
+		//Regarde si l'equation est faisable ou non
+		if(isNumeric(result.get(0))) {
+			int res = 0;
+			for(Object o : result) {
+				res = (int)o;
+			}
+			System.out.print("Determinant : "+res);
+		}else {
+			for(Object o : result) {
+				System.out.print("Determinant : ("+o+")");
+			}
+		}
+		
 	}
-	public static String[][] sousMatrice(String matrice[][], int x, int y){
-		String sMatrice[][] = new String[matrice[0].length-1][matrice[0].length-1];
-		int sMatI = 0, sMatJ = 0;
-		for(int i = x; i < matrice.length; i++) {
-			for(int j = y; j < matrice.length; j++) {
-				sMatrice[sMatJ][sMatI] = matrice[i][j];
-				sMatI++;
+	public static Object puissance(Object eq, int puissance) {
+		if(isNumeric(eq)) {
+			return (int)Math.pow(Integer.parseInt((String)eq), puissance);
+		}else {
+			if(puissance == 0) {
+				return "1";
+			}else if(puissance == 1) {
+				return eq;
+			}else {
+				return eq+String.valueOf(puissance);
 			}
-			sMatI = 0;
-			sMatJ++;
 		}
-		return sMatrice;
+	}
+	public static Object soustraire(Object x1, Object x2) {
+		if(isNumeric(x1) && isNumeric(x2)) {
+			return (int)x1- (int)x2;
+		} else {
+			if(x1.equals(x2)) {
+				return "0";
+			}
+			return x1 + "-" + x2;
+		}
+	}
+	public static String sansPuissance(String eq) {
+		return eq.replaceAll("[0-9]", "");
 	}
 	
-	public static boolean isNumeric(String str) {
+	public static String changePuissance(String eq, int newp) {
+		String result = eq;
+		String[] puissances = eq.replaceAll("[^0-9]+", " ").trim().split(" "); 
+		for(int i = 0 ; i < puissances.length ; i++) {
+			result.replace(puissances[i], String.valueOf(Integer.parseInt(puissances[i]) - newp));
+		}
+		return result;
+	}
+	//Pas opti car test uniquement la premiere
+	public static int getPuissance(String eq) {   
+		String[] puissance = eq.trim().replaceAll("[^0-9]+", ",").split(","); 
+		for(String s : puissance) {
+			return Integer.parseInt(s);
+		}
+		return 1;
+	}
+	public static boolean isNumeric(Object str) {
+		if(str instanceof Integer)return true;
+		if(!(str instanceof String))return false;
 		try {
-			int i = Integer.parseInt(str);
+			int i3 = Integer.parseInt((String)str);
 			return true;
 		}catch(Exception e) {
 			return false;
