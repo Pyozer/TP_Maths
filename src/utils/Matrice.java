@@ -26,6 +26,9 @@ public class Matrice {
 				sousMatrice[i][j] = (Double) sousMatriceStr[i][j];
 			}
 		}
+		
+		System.out.println("SOUS MATRICE:");
+		Matrice.afficherMatrice(sousMatrice);
 
 		return sousMatrice;
 	}
@@ -173,7 +176,7 @@ public class Matrice {
 	public static void afficherMatrice(Object[][] matrice) {
 		final int NBSPACE = 10;
 
-		for (int i = 0; i < matrice[0].length; i++) {
+		for (int i = 0; i < matrice.length; i++) {
 			for (int j = 0; j < matrice[0].length; j++) {
 				String spaces = "";
 				for (int nb = 0; nb < NBSPACE - String.valueOf(matrice[i][j]).length(); nb++) {
@@ -184,5 +187,16 @@ public class Matrice {
 			System.out.println("");
 		}
 		System.out.println(""); // Saut de ligne pour faire une séparation
+	}
+	
+	public static Double[][] copierMatrice(Double[][] matrice) {
+		Double[][] copyMatrice = new Double[matrice.length][matrice.length];
+		for (int i = 0; i < copyMatrice.length; i++) {
+			for (int j = 0; j < copyMatrice.length; j++) {
+				copyMatrice[i][j] = matrice[i][j];
+			}
+			
+		}
+		return copyMatrice;
 	}
 }
