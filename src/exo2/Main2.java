@@ -27,30 +27,32 @@ public class Main2 {
 		}
 
 		// Valeur de base du pivot
-		int indexLignePivot = 0;
+		int indexLignePivot = Matrice.recupererMeilleurLigne(matrice);
 		int indexColPivot = 0;
 
-		// On vérifie qu'il 'y a pas que des 0 sur la ligne pivot
+		// On vérifie qu'il y a pas que des 0 sur la ligne pivot
 		while(matrice[indexLignePivot][indexColPivot] == 0 && indexColPivot < matrice.length) {
 			if(indexColPivot == matrice.length - 1)
 				return 0.0;
 			indexColPivot++;
 		}
+		
+		Double[][] matriceCalc = matrice.clone();
 
-		Double[][] matriceCalc = matrice;
-
-		Double[] lignePivot = matriceCalc[indexLignePivot];
-		for(int i = 1;i < matriceCalc.length;i++) {
-			Double coeff = matriceCalc[i][0] / lignePivot[indexColPivot];
-			for(int j = 0;j < matriceCalc.length;j++) {
-				matriceCalc[i][j] = matriceCalc[i][j] - coeff * lignePivot[j];
+		Double[] lignePivot = matrice[indexLignePivot].clone();
+		for(int i = 0;i < matriceCalc.length;i++) {
+			if(i != indexLignePivot) {
+				Double coeff = matrice[i][indexColPivot] / lignePivot[indexColPivot];
+				for(int j = 0;j < matrice.length;j++) {
+					matriceCalc[i][j] = matrice[i][j] - coeff * lignePivot[j];
+				}
 			}
 		}
 
-		System.out.println("\nMatrice calc:");
+		System.out.println("\nMatrice calculé:");
 		Matrice.afficherMatrice(matriceCalc);
 
-		return matriceCalc[indexLignePivot][indexColPivot] * calculDetermMatrice(Matrice.sousMatriceDouble(matriceCalc, indexLignePivot, indexColPivot));
+		return Math.pow(-1, indexLignePivot + indexColPivot) * matriceCalc[indexLignePivot][indexColPivot] * calculDetermMatrice(Matrice.sousMatriceDouble(matriceCalc, indexLignePivot, indexColPivot));
 	}
 
 }

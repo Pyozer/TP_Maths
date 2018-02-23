@@ -14,7 +14,6 @@ public class Matrice {
 	 * @return Sous matrice d'ordre n-1
 	 */
 	public static Double[][] sousMatriceDouble(Double[][] matrice, int iPos, int jPos) {
-		System.out.println("METHODE APPELE !");
 		int tailleSousMatrice = matrice.length - 1;
 		Object[][] sousMatriceStr = new Object[tailleSousMatrice][tailleSousMatrice];
 		sousMatriceStr = sousMatriceObject(matrice, iPos, jPos);
@@ -116,7 +115,7 @@ public class Matrice {
 		return (a * d) - (c * b);
 	}
 
-	public static boolean isTriangular(Object[][] matrice) {
+	public static boolean estTriangulaire(Object[][] matrice) {
 
 		boolean isTriangularSup = true;
 		for (int i = 0; i < matrice.length; i++) {
@@ -138,6 +137,31 @@ public class Matrice {
 		}
 
 		return true;
+	}
+	
+	/**
+	 * Permet de trouver la meilleur ligne pour le pivot (la ligne ou il y a le plus de 0)
+	 * @param matrice Matrice où trouver la meilleur ligne
+	 * @return Meilleur ligne
+	 */
+	public static int recupererMeilleurLigne(Double[][] matrice) {
+		int max = 0; // Initialisation du maximum à 0
+		int meilleurLigne = 0; // Initialisation de la meilleur ligne à 0
+
+		for (int i = 0; i < matrice.length; i++) {
+			int nbZeroLigne = 0; // Contiendra le nbr de 0 pour chaque ligne
+
+			for (int j = 0; j < matrice.length; j++) { // Pour chaque ligne on vérifie
+				if (matrice[i][j] == 0) {
+					nbZeroLigne++;
+				}
+			}
+			if (max < nbZeroLigne) { // Si le nombre de 0 de la ligne i est plus grande que le max
+				max = nbZeroLigne;
+				meilleurLigne = i; // Défini la meilleur ligne à celle actuelle de la boucle
+			}
+		}
+		return meilleurLigne;
 	}
 
 	/**
