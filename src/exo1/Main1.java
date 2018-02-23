@@ -35,7 +35,7 @@ public class Main1 {
 
 		if (Matrice.estTriangulaire(matrice)) { // Si matrice triangulaire
 			System.out.println("Matrice triangulaire");
-			return matrice[0][0] + matrice[1][1] + matrice[2][2];
+			return matrice[0][0] * matrice[1][1] * matrice[2][2];
 		}
  
 		int meilleurLigne = Matrice.recupererMeilleurLigne(matrice); // Récupère la meilleur ligne (la où il y a le + de 0)

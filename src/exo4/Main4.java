@@ -6,7 +6,7 @@ import utils.SaisieMatrice;
 
 public class Main4 {
 	
-	private final static int TAILLE_MATRICE = 2;
+	private final static int TAILLE_MATRICE = 3;
 	
 	public static void main(String[] args) {
 		// Création de la matrice
