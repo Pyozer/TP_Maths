@@ -72,7 +72,7 @@ public class Matrice {
 	 *            Colonne choisie
 	 * @return Sous matrice d'ordre n-1
 	 */
-	private static Object[][] sousMatriceObject(Object[][] matrice, int iPos, int jPos) {
+	public static Object[][] sousMatriceObject(Object[][] matrice, int iPos, int jPos) {
 		int tailleSousMatrice = matrice.length - 1;
 		Object[][] sousMatrice = new Object[tailleSousMatrice][tailleSousMatrice];
 

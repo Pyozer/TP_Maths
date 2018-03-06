@@ -35,33 +35,18 @@ public class Main {
 		System.out.println("-------------------Matrice Originelle-------------------");
 		Matrice.afficherMatrice(matrice);
 		
-		//Parcour de la ligne
-		ArrayList<Object> result = new ArrayList<>();
-		
-		
-		int indexFin = 0;
-		int index = indexFin + 1;
-		while(indexFin <= matrice.length-2) {
-			result.add(soustraire(matrice[1][index], matrice[1][indexFin]));
-			index ++;
-			if(index > matrice.length-1) {
-				indexFin ++;
-				index = indexFin+1;
+		//On parcour les colonnes pour soustraire la colonne pivot (1)
+		for(int j = 1 ; j < matrice.length; j++) {
+			for(int i = 0 ; i < matrice.length ; i++) {
+				matrice[i][j] = soustraire(matrice[i][j], matrice[i][0]);
 			}
 		}
 		
-		//Regarde si l'equation est faisable ou non
-		if(isNumeric(result.get(0))) {
-			int res = 0;
-			for(Object o : result) {
-				res = (int)o;
-			}
-			System.out.print("Determinant : "+res);
-		}else {
-			for(Object o : result) {
-				System.out.print("Determinant : ("+o+")");
-			}
-		}
+		System.out.println("-------------------Matrice Avec 0-------------------");
+		Matrice.afficherMatrice(matrice);
+		
+		
+		Matrice.sousMatriceObject(matrice,1,1);
 		
 	}
 	public static Object puissance(Object eq, int puissance) {
@@ -69,7 +54,7 @@ public class Main {
 			return (int)Math.pow(Integer.parseInt((String)eq), puissance);
 		}else {
 			if(puissance == 0) {
-				return "1";
+				return 1;
 			}else if(puissance == 1) {
 				return eq;
 			}else {
@@ -79,10 +64,10 @@ public class Main {
 	}
 	public static Object soustraire(Object x1, Object x2) {
 		if(isNumeric(x1) && isNumeric(x2)) {
-			return (int)x1- (int)x2;
+			return Integer.parseInt(x1.toString())- Integer.parseInt(x2.toString());
 		} else {
 			if(x1.equals(x2)) {
-				return "0";
+				return 0;
 			}
 			return x1 + "-" + x2;
 		}
@@ -118,3 +103,31 @@ public class Main {
 		}
 	}
 }
+
+////Parcour de la ligne
+//		ArrayList<Object> result = new ArrayList<>();
+//		
+//		
+//		int indexFin = 0;
+//		int index = indexFin + 1;
+//		while(indexFin <= matrice.length-2) {
+//			result.add(soustraire(matrice[1][index], matrice[1][indexFin]));
+//			index ++;
+//			if(index > matrice.length-1) {
+//				indexFin ++;
+//				index = indexFin+1;
+//			}
+//		}
+//		
+//		//Regarde si l'equation est faisable ou non
+//		if(isNumeric(result.get(0))) {
+//			int res = 0;
+//			for(Object o : result) {
+//				res = (int)o;
+//			}
+//			System.out.print("Determinant : "+res);
+//		}else {
+//			for(Object o : result) {
+//				System.out.print("Determinant : ("+o+")");
+//			}
+//		}
