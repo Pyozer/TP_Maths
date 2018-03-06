@@ -21,12 +21,12 @@ public class Main2 {
 	}
 
 	public static Double calculDetermMatrice(Double[][] matrice) {
-		
-		if(matrice.length == 1) {
+
+		if (matrice.length == 1) {
 			return matrice[0][0];
 		}
-		
-		if(matrice.length == 2) {
+
+		if (matrice.length == 2) {
 			return Matrice.calculDetermMatrice2(matrice);
 		}
 
@@ -35,19 +35,19 @@ public class Main2 {
 		int indexColPivot = 0;
 
 		// On vérifie qu'il y a pas que des 0 sur la ligne pivot
-		while(indexColPivot < matrice.length && matrice[indexLignePivot][indexColPivot] == 0) {
-			if(indexColPivot == matrice.length - 1)
+		while (indexColPivot < matrice.length && matrice[indexLignePivot][indexColPivot] == 0) {
+			if (indexColPivot == matrice.length - 1)
 				return 0.0;
 			indexColPivot++;
 		}
-		
+
 		Double[][] matriceCalc = Matrice.copierMatrice(matrice);
 
 		Double[] lignePivot = matriceCalc[indexLignePivot];
-		for(int i = 0;i < matriceCalc.length;i++) {
-			if(i != indexLignePivot) {
+		for (int i = 0; i < matriceCalc.length; i++) {
+			if (i != indexLignePivot) {
 				Double coeff = matrice[i][indexColPivot] / lignePivot[indexColPivot];
-				for(int j = 0;j < matrice.length;j++) {
+				for (int j = 0; j < matrice.length; j++) {
 					matriceCalc[i][j] = matrice[i][j] - coeff * lignePivot[j];
 				}
 			}
@@ -55,8 +55,10 @@ public class Main2 {
 
 		System.out.println("\nMatrice calculé:");
 		Matrice.afficherMatrice(matriceCalc);
-		
-		return Math.pow(-1, indexLignePivot + indexColPivot) * matriceCalc[indexLignePivot][indexColPivot] * calculDetermMatrice(Matrice.sousMatriceDouble(matriceCalc, indexLignePivot, indexColPivot));
+
+		return Math.pow(-1, indexLignePivot + indexColPivot)
+				* matriceCalc[indexLignePivot][indexColPivot]
+				* calculDetermMatrice(Matrice.sousMatriceDouble(matriceCalc, indexLignePivot, indexColPivot));
 	}
 
 }

@@ -37,8 +37,9 @@ public class Main1 {
 			System.out.println("Matrice triangulaire");
 			return matrice[0][0] * matrice[1][1] * matrice[2][2];
 		}
- 
-		int meilleurLigne = Matrice.recupererMeilleurLigne(matrice); // Récupère la meilleur ligne (la où il y a le + de 0)
+
+		int meilleurLigne = Matrice.recupererMeilleurLigne(matrice); // Récupère la meilleur ligne (la où il y a le + de
+																		// 0)
 
 		System.out.println("Meilleur ligne: " + meilleurLigne);
 
@@ -46,9 +47,9 @@ public class Main1 {
 		for (int j = 0; j < TAILLE_MATRICE; j++) { // Parcours chaques colonnes de la ligne 1
 			if (matrice[meilleurLigne][j] != 0) { // Si le nombre est différent de 0 (inutile de calculer si 0)
 				determinantMatrice +=
-						matrice[meilleurLigne][j] *
-						Math.pow(-1, meilleurLigne + j) *
-						Matrice.calculDetermMatrice2(Matrice.sousMatriceDouble(matrice, meilleurLigne, j));
+						matrice[meilleurLigne][j]
+						* Math.pow(-1, meilleurLigne + j)
+						* Matrice.calculDetermMatrice2(Matrice.sousMatriceDouble(matrice, meilleurLigne, j));
 			}
 		}
 
