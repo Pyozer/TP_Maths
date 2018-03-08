@@ -26,7 +26,7 @@ public class Matrice {
 				sousMatrice[i][j] = (Double) sousMatriceStr[i][j];
 			}
 		}
-		
+
 		System.out.println("SOUS MATRICE:");
 		Matrice.afficherMatrice(sousMatrice);
 
@@ -141,10 +141,13 @@ public class Matrice {
 
 		return true;
 	}
-	
+
 	/**
-	 * Permet de trouver la meilleur ligne pour le pivot (la ligne ou il y a le plus de 0)
-	 * @param matrice Matrice où trouver la meilleur ligne
+	 * Permet de trouver la meilleur ligne pour le pivot (la ligne ou il y a le plus
+	 * de 0)
+	 * 
+	 * @param matrice
+	 *            Matrice où trouver la meilleur ligne
 	 * @return Meilleur ligne
 	 */
 	public static int recupererMeilleurLigne(Double[][] matrice) {
@@ -174,29 +177,53 @@ public class Matrice {
 	 *            Matrice àfficher
 	 */
 	public static void afficherMatrice(Object[][] matrice) {
-		final int NBSPACE = 10;
+		final int NBSPACE = 5;
+
+		// Récupère la longueur la plus grande dans la matrice
+		int maxSize = 0;
+		for (int i = 0; i < matrice.length; i++) {
+			for (int j = 0; j < matrice[0].length; j++) {				
+				int valueLength = arrondirObject(matrice[i][j]).length();
+				if (valueLength > maxSize) {
+					maxSize = valueLength;
+				}
+			}
+		}
 
 		for (int i = 0; i < matrice.length; i++) {
 			for (int j = 0; j < matrice[0].length; j++) {
+				String strValue = arrondirObject(matrice[i][j]);
+				
 				String spaces = "";
-				for (int nb = 0; nb < NBSPACE - String.valueOf(matrice[i][j]).length(); nb++) {
+				for (int nb = 0; nb < (maxSize - strValue.length()) + NBSPACE; nb++) {
 					spaces += " ";
 				}
-				System.out.print(matrice[i][j] + spaces);
+				System.out.print(strValue + spaces);
 			}
 			System.out.println("");
 		}
 		System.out.println(""); // Saut de ligne pour faire une séparation
 	}
-	
+
 	public static Double[][] copierMatrice(Double[][] matrice) {
 		Double[][] copyMatrice = new Double[matrice.length][matrice.length];
 		for (int i = 0; i < copyMatrice.length; i++) {
 			for (int j = 0; j < copyMatrice.length; j++) {
 				copyMatrice[i][j] = matrice[i][j];
 			}
-			
+
 		}
 		return copyMatrice;
+	}
+	
+	private static String arrondirObject(Object value) {
+		String strValue = String.valueOf(value).trim();
+		
+		try {
+			Double valueDouble = Double.parseDouble(strValue);
+			strValue = String.valueOf((double) Math.round(valueDouble * 10000) / 10000);
+		} catch (NumberFormatException e) {	} // not a double
+		
+		return strValue;
 	}
 }

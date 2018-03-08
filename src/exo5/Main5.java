@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 import exo2.Main2;
 import utils.Matrice;
-import utils.SaisieMatrice;
+import utils.Saisie;
 
 public class Main5 {
 	private static int taille = 0;

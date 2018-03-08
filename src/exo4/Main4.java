@@ -2,7 +2,7 @@ package exo4;
 
 import exo2.Main2;
 import utils.Matrice;
-import utils.SaisieMatrice;
+import utils.Saisie;
 
 public class Main4 {
 
@@ -11,7 +11,7 @@ public class Main4 {
 	public static void main(String[] args) {
 		// Création de la matrice
 		Double[][] matrice = new Double[TAILLE_MATRICE][TAILLE_MATRICE];
-		matrice = SaisieMatrice.debutSaisie(TAILLE_MATRICE);
+		matrice = Saisie.saisieMatrice(TAILLE_MATRICE);
 
 		System.out.println("\nMatrice : ");
 		Matrice.afficherMatrice(matrice);
@@ -24,6 +24,7 @@ public class Main4 {
 	public static Double[][] inverserMatrice(Double[][] matrice) {
 		double determinant = Main2.calculDetermMatrice(matrice);
 		if (determinant == 0) {
+			System.out.println("Imposible d'inverser la matrice: Déterminant égal à 0");
 			return null;
 		}
 

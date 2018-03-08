@@ -1,7 +1,7 @@
 package exo1;
 
 import utils.Matrice;
-import utils.SaisieMatrice;
+import utils.Saisie;
 
 public class Main1 {
 
@@ -11,7 +11,7 @@ public class Main1 {
 	public static void main(String[] args) {
 		// Création de la matrice
 		Double[][] matrice = new Double[TAILLE_MATRICE][TAILLE_MATRICE];
-		matrice = SaisieMatrice.debutSaisie(TAILLE_MATRICE);
+		matrice = Saisie.saisieMatrice(TAILLE_MATRICE);
 
 		System.out.println("\nMatrice : ");
 		Matrice.afficherMatrice(matrice);
