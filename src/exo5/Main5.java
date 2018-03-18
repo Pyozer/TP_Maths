@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import exo2.Main2;
+import exo4.Main4;
 import utils.Matrice;
 import utils.Saisie;
 
@@ -21,6 +22,7 @@ public class Main5 {
 		matrice = new Double[taille][taille];
 		result = new Double[taille];
 		
+		//On creer la matrice de l'equation
 		for(int i = 0 ; i < taille ; i++) {
 			String line = "";
 			for(int j = 0 ; j < taille + 1 ; j++) {
@@ -38,9 +40,13 @@ public class Main5 {
 				}
 			}
 		}
-		
+		//On test si la equation est de cramer
 		if((determinant = Main2.calculDetermMatrice(matrice)) != 0) {
-			System.out.println("System de cramer");
+			System.out.println("L'equation est un system de cramer");
+			
+			System.out.println("A-1 : ");
+			Matrice.afficherMatrice(Main4.inverserMatrice(matrice));
+			
 			Double[] sol = new Double[taille];
 			for(int i = 0 ; i < taille ; i ++) {
 				sol[i] = calculerSolution(i);

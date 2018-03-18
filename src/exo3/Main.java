@@ -27,7 +27,7 @@ public class Main {
 			userInput[i] = sc.nextLine();
 		}
 		// Creation de la matrice associee
-		Object matrice[][] = new Object[taille][taille];
+		Element matrice[][] = new Element[taille][taille];
 		for (int i = 0; i < matrice.length; i++) {
 			for (int j = 0; j < matrice.length; j++) {
 				matrice[i][j] = new Element(userInput[j], i);
@@ -39,10 +39,11 @@ public class Main {
 		// Parcour de la ligne
 		ArrayList<Object> result = new ArrayList<>();
 
+		//Calcul de la formule permettant de calculer le determinant
 		int indexFin = 0;
 		int index = indexFin + 1;
 		while (indexFin <= matrice.length - 2) {
-			result.add(soustraire(matrice[1][index],matrice[1][indexFin]));
+			result.add(soustraire(matrice[1][index].numericValue(),matrice[1][indexFin].numericValue()));
 			index++;
 			if (index > matrice.length - 1) {
 				indexFin++;
@@ -50,11 +51,11 @@ public class Main {
 			}
 		}
 
-		// Regarde si l'equation est faisable ou non
+		// Regarde si l'equation est calculable ou si elle est composé de therme general
 		if (isNumeric(result.get(0))) {
-			int res = 0;
-			for (Object o : result) {
-				res = (int) o;
+			double res = (double)result.get(0);
+			for(int x = 1 ; x < result.size() ; x++) {
+				res *= (double) result.get(x);
 			}
 			System.out.print("Determinant : " + res);
 		} else {
@@ -64,16 +65,15 @@ public class Main {
 			}
 			System.out.println();
 		}
-
 	}
 
 	public static boolean isNumeric(Object x) {
-		if (x instanceof Integer)
+		if (x instanceof Integer || x instanceof Float || x instanceof Double)
 			return true;
 		if (!(x instanceof String))
 			return false;
 		try {
-			int i3 = Integer.parseInt((String) x);
+			double i3 = Double.parseDouble((String) x);
 			return true;
 		} catch (Exception e) {
 			return false;
@@ -81,7 +81,7 @@ public class Main {
 	}
 	public static Object soustraire(Object x, Object y) {
 		if(isNumeric(x) && isNumeric(y)) {
-			return (Integer)x - (Integer)y;
+			return (Double)x - (Double)y;
 		} else {
 			return x + "-" + y;
 		}

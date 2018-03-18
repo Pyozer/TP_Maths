@@ -12,7 +12,6 @@ public class Element {
 	public void changePuissance(int newp) {
 		this.puissance = newp;
 	}
-	//Pas opti car test uniquement la premiere
 	public int getPuissance() {   
 		return this.puissance;
 	}
