@@ -52,11 +52,11 @@ public class Main6 {
 	}
 	
 	public static Double[][] multiplierMatrice(Double[][] m1, Double[][] m2) {
-		if(m1.length > 0 && m2.length > 0 && m1[0].length != m2[0].length) { // Si nbr de colonne de m1 est différent du nbr de ligne de m2
+		if(m1.length > 0 && m2.length > 0 && m1[0].length != m2.length) { // Si nbr de colonne de m1 est différent du nbr de ligne de m2
 			return null;
 		}
 		
-		Double[][] matriceResultat = new Double[m1.length][m1.length];
+		Double[][] matriceResultat = new Double[m1.length][m2[0].length];
 		
 		for (int i = 0; i < m1.length; ++i)
 	        for (int j = 0; j < m2[0].length; ++j) {
